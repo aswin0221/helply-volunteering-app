@@ -38,7 +38,10 @@ class VolunteersProvider extends ChangeNotifier{
             String userCountry = user['country'];
             String userState = user['state'];
             String userCity = user['city'];
-            UsersModel usersModel = UsersModel(userId: userId, userName: userName, email: email, mobileNumber: mobileNumber, profileImage: profileImage, about: about, skills: skills, emergencyContact: emergencyContact, isActiveVolunteer: isActivevolunteer, isBloodDonor: isBloodDonor, bloodGroup: bloodGroup, userCountry: userCountry, userState: userState, userCity: userCity);
+            QuerySnapshot querySnapshot = await firebaseFirestore.collection("completedEvents").where("userId",isEqualTo: userId).get();
+            List<DocumentSnapshot> docs = querySnapshot.docs;
+            int completedEvents = docs.length;
+            UsersModel usersModel = UsersModel(userId: userId, userName: userName, email: email, mobileNumber: mobileNumber, profileImage: profileImage, about: about, skills: skills, emergencyContact: emergencyContact, isActiveVolunteer: isActivevolunteer, isBloodDonor: isBloodDonor, bloodGroup: bloodGroup, userCountry: userCountry, userState: userState, userCity: userCity,userCompletedEvents: completedEvents);
             allUsers.add(usersModel);
             notifyListeners();
           }
@@ -63,6 +66,7 @@ class UsersModel {
   String userCountry;
   String userState;
   String userCity;
+  int userCompletedEvents;
   String requestDocId;
 
   UsersModel({
@@ -79,6 +83,7 @@ class UsersModel {
     required this.bloodGroup,
     required this.userCountry,
     required this.userState,
+    required this.userCompletedEvents,
     required this.userCity,
     this.requestDocId = ""
   });

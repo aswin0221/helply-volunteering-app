@@ -6,6 +6,7 @@ import 'package:helply_app/firebase_options.dart';
 import 'package:helply_app/helpers/my_local_database.dart';
 import 'package:helply_app/providers/auth_providers/login_provider.dart';
 import 'package:helply_app/providers/auth_providers/signup_provider.dart';
+import 'package:helply_app/providers/chat_provider.dart';
 import 'package:helply_app/providers/event_providers/upcoming_events_provider.dart';
 import 'package:helply_app/providers/event_providers/upload_event_provider.dart';
 import 'package:helply_app/providers/others/bottom_navbar_provider.dart';
@@ -68,7 +69,8 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context)=>CompletedEventsProvider()),
         ChangeNotifierProvider(create: (context)=>MyEventUploadProvider()),
         ChangeNotifierProvider(create: (context)=>ReviewProvider()),
-        ChangeNotifierProvider(create: (context)=>UserReviewProvider())
+        ChangeNotifierProvider(create: (context)=>UserReviewProvider()),
+        ChangeNotifierProvider(create: (context)=>ChatProvider())
 
       ],
       child: MaterialApp(

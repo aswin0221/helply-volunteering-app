@@ -63,6 +63,7 @@ class _ActiveVolunteerScreenState extends State<ActiveVolunteerScreen> {
                             String userCountry = user['country'];
                             String userState = user['state'];
                             String userCity = user['city'];
+
                             UsersModel usersModel = UsersModel(
                                 userId: userId,
                                 userName: userName,
@@ -77,7 +78,9 @@ class _ActiveVolunteerScreenState extends State<ActiveVolunteerScreen> {
                                 bloodGroup: bloodGroup,
                                 userCountry: userCountry,
                                 userState: userState,
-                                userCity: userCity);
+                                userCity: userCity,
+                              userCompletedEvents: 3
+                            );
                             return VolunteerCard(usersModel: usersModel);
                           },
                           // orderBy is compulsory to enable pagination

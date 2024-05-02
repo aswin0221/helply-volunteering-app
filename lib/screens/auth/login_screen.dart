@@ -5,6 +5,7 @@ import 'package:helply_app/componenets/my_title.dart';
 import 'package:helply_app/constants/colors.dart';
 import 'package:helply_app/helpers/my_navigator.dart';
 import 'package:helply_app/providers/auth_providers/login_provider.dart';
+import 'package:helply_app/providers/user_details/user_detail_provider.dart';
 import 'package:helply_app/responsive.dart';
 import 'package:helply_app/screens/Home/home_screen.dart';
 import 'package:helply_app/screens/auth/forgot_password_screen.dart';
@@ -265,7 +266,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     foregroundColor: secondaryColor
                                 ),
                                 onPressed: () {
-                                  MyNavigator.pushReplacementNavigator(context, const MainScreen());
+                                 //MyNavigator.pushReplacementNavigator(context, const MainScreen());
                                 },
                                 child: const Column(
                                   mainAxisAlignment: MainAxisAlignment.center,

@@ -117,10 +117,16 @@ class UploadEventProvider extends ChangeNotifier {
       "isEventCompleted":false,
       "isEventCanceled":false
     }).then((value) {
-      firebaseFirestore.collection("chats").doc("groupChats").collection(docId).doc().set({
+      firebaseFirestore.collection("requestedWorks").doc().set({
+        "eventId":docId,
+        "userId":userDetailProvider.userId,
+        "status":true
+      });
+      firebaseFirestore.collection(docId).doc().set({
         "message":"Hello Welcome everyone....",
         "messageTime":DateTime.now().millisecondsSinceEpoch,
-        "userId":FirebaseAuth.instance.currentUser!.uid
+        "userId":userDetailProvider.userId,
+        "userName": userDetailProvider.userName
       }).then((value){
         eventName.clear();
         eventRequirements.clear();

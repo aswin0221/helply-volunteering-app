@@ -93,7 +93,10 @@ class MyEventUploadProvider extends ChangeNotifier {
         String userCountry = user['country']?? "";
         String userState = user['state']?? "";
         String userCity = user['city']?? "";
-        UsersModel usersModel =  UsersModel(userId: userId, userName: userName, email: email, mobileNumber: mobileNumber, profileImage: profileImage, about: about, skills: skills, emergencyContact: emergencyContact, isActiveVolunteer: isActivevolunteer, isBloodDonor: isBloodDonor, bloodGroup: bloodGroup, userCountry: userCountry, userState: userState, userCity: userCity,requestDocId: docId);
+        QuerySnapshot querySnapshot = await firebaseFirestore.collection("completedEvents").where("userId",isEqualTo: userId).get();
+        List<DocumentSnapshot> docs = querySnapshot.docs;
+        int completedEvents = docs.length;
+        UsersModel usersModel =  UsersModel(userId: userId, userName: userName, email: email, mobileNumber: mobileNumber, profileImage: profileImage, about: about, skills: skills, emergencyContact: emergencyContact, isActiveVolunteer: isActivevolunteer, isBloodDonor: isBloodDonor, bloodGroup: bloodGroup, userCountry: userCountry, userState: userState, userCity: userCity,requestDocId: docId,userCompletedEvents: completedEvents);
         if(requests['status'])
           {
             acceptedPeoples.add(usersModel);

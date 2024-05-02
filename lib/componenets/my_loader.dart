@@ -27,7 +27,7 @@ class _MyLoaderState extends State<MyLoader> {
 
   // Function to start the timer
   void startTimer() {
-    Future.delayed(Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 3), () {
       // Check if the widget is still mounted before calling setState
       if (mounted) {
         setState(() {
@@ -45,7 +45,7 @@ class _MyLoaderState extends State<MyLoader> {
         color: primaryColor,
         size: 50.0,
       )
-          : Lottie.asset("assets/lottie/no_data_found.json", width: 300),
+          : Lottie.asset("assets/lottie/no_data_found.json", width: 300 ,repeat:false),
     );
   }
 }

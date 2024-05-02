@@ -3,6 +3,7 @@ import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutterflow_paginate_firestore/bloc/pagination_listeners.dart';
 import 'package:flutterflow_paginate_firestore/paginate_firestore.dart';
 import 'package:helply_app/componenets/my_appbar.dart';
@@ -17,6 +18,7 @@ import 'package:helply_app/providers/user_details/user_detail_provider.dart';
 import 'package:helply_app/screens/events/single_event_screen.dart';
 import 'package:intl/intl.dart';
 import 'package:line_icons/line_icon.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class UpcomingEventsScreen extends StatefulWidget {
@@ -353,16 +355,23 @@ class _UpcomingEventsScreenState extends State<UpcomingEventsScreen> {
                               },
                               // orderBy is compulsory to enable pagination
                               query: FirebaseFirestore.instance
-                                  .collection('events'),
+                                  .collection('events').where("isEventCompleted",isEqualTo: false),
                               //Change types accordingly
                               itemBuilderType: PaginateBuilderType.listView,
-                              onLoaded: (s) {},
-                              onPageChanged: (p0) => setState(() {}),
+                              initialLoader: SpinKitRipple(
+                                color: primaryColor,
+                                size: 50.0,
+                              ),
+                              bottomLoader:SpinKitRipple(
+                                color: primaryColor,
+                                size: 50.0,
+                              ),
+                              onEmpty: Lottie.asset("assets/lottie/no_data_found.json", width: 300 ,repeat:false),
                               // to fetch real-time data
                               listeners: [
                                 refreshChangeListener,
                               ],
-                              isLive: true,
+                              isLive: false,
                             ),
                             onRefresh: () async {
                               refreshChangeListener.refreshed = true;

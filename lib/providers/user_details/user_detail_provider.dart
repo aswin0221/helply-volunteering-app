@@ -47,11 +47,17 @@ class UserDetailProvider extends ChangeNotifier {
     userCountry = user['country'];
     userState = user['state'];
     userCity = user['city'];
-    
-    QuerySnapshot querySnapshot = await firebaseFirestore.collection("completedWorks").where("userId",isEqualTo: FirebaseAuth.instance.currentUser!.uid).get();
+    print("_________________________________Completed");
+    QuerySnapshot querySnapshot = await firebaseFirestore.collection("completedEvents").where("userId",isEqualTo: FirebaseAuth.instance.currentUser!.uid).get();
     List<DocumentSnapshot> docs = querySnapshot.docs;
     completedEvents = docs.length;
     notifyListeners();
+  }
+  
+  
+  getChats()async{
+    DocumentSnapshot documentSnapshot = await firebaseFirestore.collection("chats").doc("groupChats").get();
+    print(documentSnapshot.data());
   }
 
 }

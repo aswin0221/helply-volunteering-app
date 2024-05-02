@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:helply_app/helpers/my_local_database.dart';
 import 'package:helply_app/helpers/my_navigator.dart';
+import 'package:helply_app/screens/auth/login_success_screen.dart';
 import 'package:helply_app/screens/auth/verify_email_Screen.dart';
 import 'package:helply_app/screens/main_screen.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
@@ -31,10 +32,10 @@ class LoginProvider extends ChangeNotifier {
         if(FirebaseAuth.instance.currentUser!.emailVerified)
           {
             print("helloo --------------verified");
-            MyNavigator.pushNavigator(context, MainScreen());
+            MyNavigator.pushNavigator(context, const LoginSuccessScreen());
           }
         else{
-          MyNavigator.pushNavigator(context, VerifyEmailScreen());
+          MyNavigator.pushNavigator(context, const VerifyEmailScreen());
         }
       });
     } on FirebaseAuthException catch(e){

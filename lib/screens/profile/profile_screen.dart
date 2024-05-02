@@ -9,6 +9,8 @@ import 'package:helply_app/helpers/my_alert_box.dart';
 import 'package:helply_app/helpers/my_local_database.dart';
 import 'package:helply_app/helpers/my_navigator.dart';
 import 'package:helply_app/providers/others/bottom_navbar_provider.dart';
+import 'package:helply_app/providers/user_details/completed_events_provider.dart';
+import 'package:helply_app/providers/user_details/my_request_providers.dart';
 import 'package:helply_app/providers/user_details/my_uploads_providers.dart';
 import 'package:helply_app/providers/user_details/user_detail_provider.dart';
 import 'package:helply_app/screens/auth/login_screen.dart';
@@ -26,6 +28,15 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    MyRequestProvider myRequestProvider = Provider.of(context,listen: false);
+    CompletedEventsProvider completedEventsProvider = Provider.of(context,listen: false);
+    MyEventUploadProvider myEventUploadProvider = Provider.of(context,listen: false);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -175,6 +186,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           onTap: (){
                             MyLocalStorage.setBool("isLogin", false);
                             barProvider.currentIndex=0;
+                            myEventUploadProvider.requestPeoples=[];
+                            myEventUploadProvider.myUploads=[];
+                            myEventUploadProvider.acceptedPeoples=[];
+                            myEventUploadProvider.checkCompleteStatus=[];
                             MyNavigator.pushReplacementNavigator(context, const LoginScreen());
                           },
                           child: Container(

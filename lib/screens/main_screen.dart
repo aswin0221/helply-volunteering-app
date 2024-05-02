@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:helply_app/constants/colors.dart';
+import 'package:helply_app/providers/chat_provider.dart';
 import 'package:helply_app/providers/user_details/completed_events_provider.dart';
 import 'package:helply_app/providers/user_details/my_request_providers.dart';
 import 'package:helply_app/providers/user_details/my_uploads_providers.dart';
@@ -45,6 +46,8 @@ class _MainScreenState extends State<MainScreen> {
     MyRequestProvider myRequestProvider = Provider.of(context,listen: false);
     CompletedEventsProvider completedEventsProvider = Provider.of(context,listen: false);
     MyEventUploadProvider myEventUploadProvider = Provider.of(context,listen: false);
+    ChatProvider chatProvider = Provider.of(context,listen: false);
+
     super.initState();
   }
 
